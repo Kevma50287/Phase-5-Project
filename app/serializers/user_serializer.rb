@@ -1,0 +1,9 @@
+class UserSerializer < ActiveModel::Serializer
+  attributes :id, :username, :email, :first_name, :last_name, :sex, :age, :city, :lat, :lng, :preferences, :avatar
+
+  has_many :friends
+
+  # def avatar
+  #   Rails.application.routes.url_helpers.url_for(object.avatar, only_path: true) if object.avatar.attached?
+  # end
+end
