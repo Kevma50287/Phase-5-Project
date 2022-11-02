@@ -1,0 +1,30 @@
+.content-container {
+  position:relative;
+  width: 80%;
+  margin: 2rem auto 0px auto;
+
+  .basic-info-card{
+    &:hover {
+      box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.5);
+    }
+  }
+  .banner {
+    margin-bottom:50px;
+    text-align: center;
+    p {
+      padding: 0px 15%;
+    }
+  }
+  
+  .home-buttons-container {
+    column-gap: 5%;
+    margin:0px auto
+  }
+
+  h1 {
+    margin: 2rem auto;
+    text-align: center;
+  }
+}
+
+

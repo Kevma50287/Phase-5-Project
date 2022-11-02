@@ -1,4 +1,5 @@
 import React from "react";
+import './Form.scss'
 
 const FormInput = ({formData, handleFormInput, formKey, inputLabel, inputType="text"}) => {
   return (
