@@ -23,7 +23,7 @@ const EventForm = () => {
     what: "",
     when: "",
     why: "",
-    image: null,
+    image_url: null,
   });
 
   const [show, setShow] = useState(false);

@@ -8,19 +8,25 @@ class UsersController < ApplicationController
 
   # GET /profile - Shows all the users information
   def profile
-    render json: @current_user
+    @user_id = decode_token
+    if @user_id
+      @user = User.find_by!(id: @user_id)
+      render json: @user
+    else 
+      render json: {error: "401 incorrect token"}, status: 401
+    end
   end
 
   # POST /users
   def create
     @user = User.create!(user_params)
-    cookies.encrypted[:current_user_id] = {value: @user.id, expires:7.days}
-    render json: @user, status: :created
+    @token = generate_token(@user.id)
+    render json: {user: UserSerializer.new(@user).serializable_hash, jwt:@token}, status: :created
   end
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
+    if current_user.update!(user_params)
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -30,7 +36,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     #User can delete account
-    @current_user.destroy
+    current_user.destroy
     head :no_content
   end
 
@@ -38,10 +44,9 @@ class UsersController < ApplicationController
 
   def login
     @user = User.find_by!(username: params[:username])
-    # binding.break
-    if user&.authenticate(params[:password])
-      cookies.encrypted[:current_user_id] = {value: @user.id, expires:7.days}
-      render json: user, status: :created
+    if @user&.authenticate(params[:password])
+      @token = generate_token(@user.id)
+      render json: {user: UserSerializer.new(@user).serializable_hash, jwt:@token}, status: :created
     else
       render json:{error: "Incorrect username or password"}, status: :unauthorized
     end
@@ -55,6 +60,6 @@ class UsersController < ApplicationController
   private
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:username, :email, :first_name, :last_name, :password, :password_confirmation, :sex, :age, :city, :lat, :lng, {:preferences => []}, :avatar)
+      params.require(:user).permit(:username, :email, :first_name, :last_name, :password, :password_confirmation, :sex, :age, :city, :lat, :lng, {:preferences => []}, :avatar, :state, :location)
     end
 end

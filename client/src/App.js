@@ -4,6 +4,12 @@ import { useGeolocated } from "react-geolocated";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NavBar from "./Components/NavBar/NavBar";
+import LandingPage from "./Routes/LandingPage"
+import LoginPage from "./Routes/LoginPage"
+import EventPage from "./Routes/EventPage"
+import UserPage from "./Routes/UserPage"
+import ProfilePage from "./Routes/ProfilePage"
+import SignupPage from "./Routes/SignupPage"
 
 export const AppContext = React.createContext();
 

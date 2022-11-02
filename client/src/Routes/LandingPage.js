@@ -1,7 +1,7 @@
 import React from "react";
-import NavButton from "../Buttons/NavButton";
+import NavButton from "../Components/Buttons/NavButton";
 import { v4 as uuid } from 'uuid';
-import BasicCard from "../Cards/BasicCard";
+import BasicCard from "../Components/Cards/BasicCard";
 import './LandingPage.scss'
 
 const cardsToMake = [

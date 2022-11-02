@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  location: MyString
+  city: MyString
+  state: MyString
+  lat: MyString
+  lng: MyString
+  party_size: 1
+  what: MyString
+  when: MyString
+  why: MyString
+  user: one
+
+two:
+  title: MyString
+  location: MyString
+  city: MyString
+  state: MyString
+  lat: MyString
+  lng: MyString
+  party_size: 1
+  what: MyString
+  when: MyString
+  why: MyString
+  user: two

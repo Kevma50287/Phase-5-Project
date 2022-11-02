@@ -6,6 +6,7 @@ class ZipcodeController < ApplicationController
   skip_before_action :authorize
   
   API_KEY = Rails.application.credentials.redline_zipcode_apikey
+  API_KEY_2 = Rails.application.credentials.geocode_apikey
 
   def location
     url = URI("https://redline-redline-zipcode.p.rapidapi.com/rest/multi-info.json/#{params[:zipcode]}/degrees")
@@ -24,9 +25,27 @@ class ZipcodeController < ApplicationController
     render json:body, status: 201
   end
 
+  def coordinates
+    uri = URI('https://geocode.xyz')
+
+    params = {
+        'auth' => API_KEY_2,
+        'locate' => params[:location],
+        'geoit' => 'json'
+    }
+
+    uri.query = URI.encode_www_form(params)
+
+    response = Net::HTTP.get_response(uri)
+
+    puts response.read_body
+    body = JSON.parse(response.body)
+    render json:body, status: 201
+  end
+
   private
 
   def api_params
-    params.permit(:zipcode)
+    params.permit(:zipcode, :location)
   end
 end

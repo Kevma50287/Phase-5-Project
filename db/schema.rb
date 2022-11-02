@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_26_235920) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_02_184916) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,31 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_235920) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.string "location"
+    t.string "city"
+    t.string "state"
+    t.string "lat"
+    t.string "lng"
+    t.integer "party_size"
+    t.string "what"
+    t.datetime "when"
+    t.string "why"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_url"
+    t.string "tags", default: [], array: true
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
   create_table "friendships", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "friend_id"
@@ -52,6 +77,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_235920) do
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "participations", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_participations_on_event_id"
+    t.index ["user_id"], name: "index_participations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -60,16 +101,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_235920) do
     t.string "password_digest"
     t.string "sex"
     t.integer "age"
+    t.string "location"
     t.string "preferences", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "city"
+    t.string "state"
     t.string "lat"
     t.string "lng"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "events", "users"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "participations", "events"
+  add_foreign_key "participations", "users"
 end
