@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :biography_blocks
   resources :participations
   resources :events
   resources :chats

@@ -10,7 +10,7 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.integer :party_size
       t.string :what
       t.datetime :when
-      t.string :why
+      t.text :why
       t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps

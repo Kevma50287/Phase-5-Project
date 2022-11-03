@@ -1,4 +1,4 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useGeolocated } from "react-geolocated";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

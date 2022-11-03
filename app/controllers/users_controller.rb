@@ -20,6 +20,11 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.create!(user_params)
+    BiographyBlock.create!({
+      user_id:@user.id,
+      title:"About Me",
+      content:"Nothing here yet - tell me about yourself!",
+    })
     @token = generate_token(@user.id)
     render json: {user: UserSerializer.new(@user).serializable_hash, jwt:@token}, status: :created
   end
@@ -60,6 +65,6 @@ class UsersController < ApplicationController
   private
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :email, :first_name, :last_name, :password, :password_confirmation, :sex, :age, :city, :lat, :lng, {:preferences => []}, :avatar, :state, :location)
+      params.require(:user).permit(:username, :email, :first_name, :last_name, :password, :password_confirmation, :sex, :age, :city, :lat, :lng, {preferences: []}, :avatar, :state, :location)
     end
 end

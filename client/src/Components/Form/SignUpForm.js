@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import FormInput from "./FormInput";
 import "./Form.scss";
@@ -26,7 +26,7 @@ const handleSubmitErrors = (error) => {
 
 const SignUpForm = () => {
   // Context
-  const { setUser, user } = useContext(AppContext);
+  const { setUser } = useContext(AppContext);
 
   // State
   const [formData, setFormData] = useState({
@@ -108,6 +108,7 @@ const SignUpForm = () => {
         dataObj.append(`user[${key}]`, value);
       }
       dataObj.append("user[avatar]", formData.avatar);
+      console.log(dataObj)
       const data = await handleSubmitApi(dataObj);
       // for (var pair of dataObj.entries()){
       //   console.log(pair[0] + ', ' + pair[1])

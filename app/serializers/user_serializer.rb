@@ -3,6 +3,7 @@ class UserSerializer < ActiveModel::Serializer
   has_many :friends
   has_many :events
   has_many :hosted_events
+  has_many :biography_blocks
 
   # def avatar
   #   Rails.application.routes.url_helpers.url_for(object.avatar, only_path: true) if object.avatar.attached?

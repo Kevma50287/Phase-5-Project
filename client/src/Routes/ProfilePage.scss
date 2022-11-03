@@ -4,3 +4,16 @@
   outline: none;
   width: 30%;
 }
+
+.profile-info-container {
+  background-color: bisque;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.edit-icon {
+  &:hover{
+    cursor:pointer
+  }
+}

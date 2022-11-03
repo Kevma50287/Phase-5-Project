@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_02_184916) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_02_234003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_184916) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "biography_blocks", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_biography_blocks_on_user_id"
+  end
+
   create_table "chats", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -58,7 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_184916) do
     t.integer "party_size"
     t.string "what"
     t.datetime "when"
-    t.string "why"
+    t.text "why"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,7 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_184916) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string "content"
+    t.text "content"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -113,6 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_184916) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "biography_blocks", "users"
   add_foreign_key "events", "users"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
