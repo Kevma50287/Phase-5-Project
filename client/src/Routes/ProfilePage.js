@@ -193,7 +193,7 @@ const ProfilePage = () => {
               <div>Attending Events</div>
               <div>
                 {user?.events.map((event) => (
-                  <EventCard props={event}/>
+                  <EventCard key={uuid()} props={event}/>
                 ))}
               </div>
               <div className="flex flex-row justify-center gap-x-2">
@@ -202,7 +202,7 @@ const ProfilePage = () => {
               </div>
               <div>
                 {user?.hosted_events.map((event) => (
-                  <EventCard props={event} allowDelete={true}/>
+                  <EventCard key={uuid()} props={event} allowDelete={true}/>
                 ))}
               </div>
             </div>

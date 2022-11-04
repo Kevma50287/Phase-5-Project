@@ -11,6 +11,7 @@ import ProfilePage from "./Routes/ProfilePage";
 import SignupPage from "./Routes/SignupPage";
 import PersonPage from "./Routes/PersonPage";
 import SearchPage from "./Routes/SearchPage";
+import FriendPage from "./Routes/FriendPage";
 
 export const AppContext = React.createContext();
 
@@ -116,6 +117,7 @@ function App() {
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignupPage />} />
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="friends" element={<FriendPage/>} />
             <Route path="/user/:userId" element={<PersonPage />} />
             <Route
               path="events"

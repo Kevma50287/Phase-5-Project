@@ -4,12 +4,15 @@ import { useNavigate } from "react-router-dom";
 import FunctionButton from "../Buttons/FunctionButton";
 import './BasicModal.scss'
 
-const BasicModal = ({show, setShow, title='Enter title prop', message='Enter message prop', navigateTo=false}) => {
+const BasicModal = ({show, setShow, title='Enter title prop', message='Enter message prop', navigateTo=false, reload=false}) => {
   const navigate = useNavigate()
   const handleClose = () => {
     setShow(false);
     if (navigateTo){
       navigate(`${navigateTo}`)
+    }
+    if (reload){
+      window.location.reload()
     }
   };
   return (

@@ -1,4 +1,4 @@
-import { Person, Event, Search } from "@mui/icons-material";
+import { Person, Event, Search, Group } from "@mui/icons-material";
 import "./NavBar.scss";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link, useNavigate } from "react-router-dom";
@@ -61,6 +61,9 @@ const NavBar = ({ allUsers }) => {
           </form>
         </div>
         <div className="nav-item-container">
+        <div className="icon-container">
+            <Group className="header-icon" onClick={() => navigate('/friends')} />
+          </div>
           <div className="icon-container">
             <Link to={`/events`}>
               <Event className="header-icon" />

@@ -174,7 +174,7 @@ const EventForm = ({clickAction}) => {
           </div>
         </div>
       </form>
-      <BasicModal show={show} setShow={setShow} title={'Success'} message={`Event has been created!`} />
+      <BasicModal show={show} setShow={setShow} title={'Success'} message={`Event has been created!`} reload={true} />
     </>
   );
 };
