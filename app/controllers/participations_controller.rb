@@ -1,34 +1,18 @@
 class ParticipationsController < ApplicationController
-  before_action :set_participation, only: %i[ show destroy ]
-
-  # GET /participations
-  def index
-    @participations = Participation.all
-
-    render json: @participations
-  end
-
-  # GET /participations/1
-  def show
-    render json: @participation
-  end
-
   # POST /participations
   def create
     @participation = Participation.create!(participation_params)
-    render json: @participation, status: :created, location: @participation
+    render json: @participation, status: :created
   end
 
-  # DELETE /participations/1
+  # DELETE /participations/1/1
   def destroy
+    @participation = Participation.find_by!(user_id:params[:user_id], event_id:params[:event_id])
     @participation.destroy
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_participation
-      @participation = Participation.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def participation_params

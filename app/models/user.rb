@@ -12,6 +12,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :username, :email
   validates_presence_of :username, :email, :first_name, :last_name
 
+
   def avatar_url
     Rails.application.routes.url_helpers.url_for(avatar) if avatar.attached?
   end

@@ -11,6 +11,7 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.string :what
       t.datetime :when
       t.text :why
+      t.string :avatar_url 
       t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps

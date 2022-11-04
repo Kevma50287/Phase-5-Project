@@ -8,4 +8,5 @@ class UserSerializer < ActiveModel::Serializer
   # def avatar
   #   Rails.application.routes.url_helpers.url_for(object.avatar, only_path: true) if object.avatar.attached?
   # end
+  
 end

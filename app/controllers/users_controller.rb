@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize, only: %i[ show create login ]
+  skip_before_action :authorize, only: %i[ show create login index ]
 
+  def index
+    @users = User.all
+    render json: @users
+  end
   # GET /users/1 - Shows only basic user information
   def show
+    @user = User.find_by!(id: params[:id])
     render json: @user
   end
 
@@ -11,7 +16,7 @@ class UsersController < ApplicationController
     @user_id = decode_token
     if @user_id
       @user = User.find_by!(id: @user_id)
-      render json: @user
+      render json: @user, serializer: UserSerializer
     else 
       render json: {error: "401 incorrect token"}, status: 401
     end

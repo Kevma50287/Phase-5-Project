@@ -7,7 +7,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.new(friendship_params)
 
     if @friendship.save
-      render json: @friendship, status: :created, location: @friendship
+      render json: @friendship, status: :created
     else
       render json: @friendship.errors, status: :unprocessable_entity
     end

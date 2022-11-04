@@ -16,19 +16,13 @@ class BiographyBlocksController < ApplicationController
 
   # POST /biography_blocks
   def create
-    @biography_block = BiographyBlock.new(biography_block_params)
-
-    if @biography_block.save
-      render json: @biography_block, status: :created, location: @biography_block
-    else
-      render json: @biography_block.errors, status: :unprocessable_entity
-    end
+    @biography_block = BiographyBlock.create!(biography_block_params)
+    render json: @biography_block, status: :created
   end
 
   # PATCH/PUT /biography_blocks/1
   def update
     @biography_block.update!(biography_block_params)
-    debugger
     render json: @biography_block, status: 204
   end
 

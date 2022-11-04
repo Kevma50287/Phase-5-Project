@@ -28,13 +28,14 @@ class ZipcodeController < ApplicationController
   def coordinates
     uri = URI('https://geocode.xyz')
 
-    params = {
+    
+    formparams = {
         'auth' => API_KEY_2,
         'locate' => params[:location],
         'geoit' => 'json'
     }
-
-    uri.query = URI.encode_www_form(params)
+    
+    uri.query = URI.encode_www_form(formparams)
 
     response = Net::HTTP.get_response(uri)
 
