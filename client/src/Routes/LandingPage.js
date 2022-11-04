@@ -9,18 +9,18 @@ const cardsToMake = [
     title: "Create a Hangout",
     content:
       "Tell us what you want to do and we'll find people who want the same. You'll never be at it alone unless you want to!",
-    image: "tbd",
+    image: "https://images.pexels.com/photos/2422290/pexels-photo-2422290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     title: "Join a Hangout",
     content: "See what other experiences people are offering and join them!",
-    image: "tbd",
+    image: "https://images.pexels.com/photos/3865558/pexels-photo-3865558.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     title: "Make Friends",
     content:
       "Enjoyed an experience or had a great conversation? Found a hobby buddy? Message, videochat, and add them!",
-    image: "tbd",
+    image: "https://images.pexels.com/photos/6150584/pexels-photo-6150584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
 ];
 

@@ -232,7 +232,7 @@ const SignUpForm = () => {
           </div>
         </div>
       </form>
-      <BasicModal show={show} setShow={setShow} navigateTo="/profile" />
+      <BasicModal show={show} setShow={setShow} navigateTo="/profile" title="Success" message="Account has been created - you will now be redirected to your profile page" />
     </>
   );
 };

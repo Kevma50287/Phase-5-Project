@@ -2,12 +2,12 @@ import { Person, Event, Search } from "@mui/icons-material";
 import "./NavBar.scss";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BasicModal from "../Modal/BasicModal";
 import { AppContext } from "../../App";
 
-const NavBar = () => {
-  const {setUser} = useContext(AppContext)
+const NavBar = ({ allUsers }) => {
+  const { setUser } = useContext(AppContext);
   const [show, setShow] = useState(false);
 
   const handleShow = () => {
@@ -16,14 +16,19 @@ const NavBar = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
-  const handleSearch = (e) => {
+  const handleChange = (e) => {
     setSearch(e.target.value);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/users?keyword=${search.toLowerCase()}`)
   };
 
   const handleLogout = () => {
     localStorage.clear();
-    setUser(null)
-    handleShow()
+    setUser(null);
+    handleShow();
   };
 
   return (
@@ -40,14 +45,14 @@ const NavBar = () => {
           </div>
 
           <div></div>
-          <form className="search-form">
+          <form className="search-form" onSubmit={handleSearch}>
             <div className="flex flex-row h-12 border-neutral-400 border-2 p-1">
               <input
                 type="search"
                 name="keywords"
-                placeholder="Search by keywords"
+                placeholder="Search users"
                 value={search}
-                onChange={(e) => handleSearch(e)}
+                onChange={(e) => handleChange(e)}
               ></input>
               <button type="submit">
                 <Search />
@@ -71,13 +76,15 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-      {show&& <BasicModal
-        show={show}
-        setShow={setShow}
-        title="Success"
-        message="You are now logged out!"
-        navigateTo="/"
-      />}
+      {show && (
+        <BasicModal
+          show={show}
+          setShow={setShow}
+          title="Success"
+          message="You are now logged out!"
+          navigateTo="/"
+        />
+      )}
     </>
   );
 };
